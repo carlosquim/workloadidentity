@@ -21,11 +21,11 @@ var token = new AccessToken();
 try
 {
     token = credential.GetToken(new Azure.Core.TokenRequestContext(scopes:["api://644e0700-85ae-4de0-83dd-a876d692e693/.default"]));
-    stringData=stringData + "roles:"+ "\r\nToken:" +token.Token.ToString()+"\r\n";
+    stringData=stringData + "\r\nToken:" +token.Token.ToString()+"\r\n";
 }
 catch (System.Exception e)
 {
-    stringData=stringData+"Error getting token1: "+e.Message;
+    stringData=stringData+"Error getting token: "+e.Message;
 }
 
 return stringData;
@@ -37,12 +37,3 @@ var app = builder.Build();
 app.MapGet("/", () => "The execution has finished please check the logs "+ generateToken() +System.DateTime.UtcNow.ToString());
 
 app.Run();
-public record Record(
-    string appservicename,
-    string app,
-    string id,
-    string category,
-    string name,
-    double responseTime,
-    DateTime date
-);
